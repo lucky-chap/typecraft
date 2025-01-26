@@ -28,7 +28,6 @@ export default function TypingPage() {
     wordContainerFocused,
     modalIsOpen,
     aboutModal,
-    notFoundModal,
     history,
     time,
     fetching,
@@ -55,6 +54,8 @@ export default function TypingPage() {
       </div>
     );
   }
+
+  console.log("Not found state", notFound);
 
   return (
     <div
@@ -111,15 +112,6 @@ export default function TypingPage() {
             >
               <AboutPage />
             </ModalComponent>
-            {notFound && (
-              <ModalComponent
-                type="notfound"
-                isOpen={true}
-                onRequestClose={closeModal}
-              >
-                <NotFoundPage />
-              </ModalComponent>
-            )}
           </>
         )}
       </main>

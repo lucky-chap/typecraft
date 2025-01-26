@@ -1,15 +1,15 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 import { generateWord } from "../utils";
-import { useSystem } from "./useSystem";
 
 export const useWord = (numberOfWords: number) => {
+  const router = useRouter();
   const pahtname = usePathname();
   const [notFound, setNotFound] = useState<boolean>(false);
-  const id = pahtname.split("/")[1] ?? "fake-id";
+  const gameId = pahtname.split("/")[1] ?? "fake-id";
   const [fetching, setFetching] = useState<boolean>(true);
   const [word, setWord] = useState<string>("");
   const [totalWord, setTotalWord] = useState<string>("");
@@ -26,27 +26,34 @@ export const useWord = (numberOfWords: number) => {
 
     const data = await res.json();
 
+    console.log("Content fetched", data);
+
     const typingContent =
       data.success == true
         ? data.content + " "
         : generateWord(numberOfWords) + " ";
 
     if (data.success == false) {
-      setNotFound(true);
+      router.push("/not-found");
     }
 
-    return typingContent;
+    return { text: typingContent, success: data.success };
   };
 
   useEffect(() => {
     const fetchWord = async () => {
-      const fetchedWord = await getWord(numberOfWords, id);
-      setWord(fetchedWord);
-      setTotalWord(fetchedWord);
+      const fetchedWord = await getWord(numberOfWords, gameId);
+      setWord(fetchedWord.text);
+      setTotalWord(fetchedWord.text);
       setFetching(false);
+      // if (fetchedWord.success == false) {
+      //   router.push("/not-found");
+      // }
     };
     fetchWord();
   }, []);
+
+  console.log("Is not found", notFound);
 
   const appendWord = useCallback((word: string) => {
     setTotalWord((prev) => prev + word);

@@ -11,13 +11,13 @@ export const useModal = () => {
 
   const openModal = useCallback((type: string) => {
     if (type === "result") setModalIsOpen(true);
-    if (type === "notfound") setNotFoundModal(true);
+    else if (type === "notfound") setNotFoundModal(true);
     else setAboutModal(true);
   }, []);
 
   const closeModal = useCallback((type: string) => {
     if (type === "result") setModalIsOpen(false);
-    if (type === "notfound") setNotFoundModal(false);
+    else if (type === "notfound") setNotFoundModal(false);
     else setAboutModal(false);
     if (type === "result") router.push("/");
   }, []);
