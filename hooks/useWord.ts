@@ -53,8 +53,6 @@ export const useWord = (numberOfWords: number) => {
     fetchWord();
   }, []);
 
-  console.log("Is not found", notFound);
-
   const appendWord = useCallback((word: string) => {
     setTotalWord((prev) => prev + word);
   }, []);

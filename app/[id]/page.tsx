@@ -32,7 +32,6 @@ export default function TypingPage() {
     time,
     fetching,
     results,
-    notFound,
     resetCountdown,
     setLocalStorageValue,
     setWordContainerFocused,
@@ -54,8 +53,6 @@ export default function TypingPage() {
       </div>
     );
   }
-
-  console.log("Not found state", notFound);
 
   return (
     <div

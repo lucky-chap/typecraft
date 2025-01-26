@@ -32,8 +32,6 @@ const ModalContent = ({ totalTime, history, results }: ModalContentProps) => {
   const { ref, image, getImage } = useScreenShot();
   const { systemTheme } = useThemeContext();
 
-  console.log("Word histor", history);
-
   return (
     <div
       className="mx-auto flex h-full w-[95%] flex-col gap-10 pb-10 pt-8 font-mono"
