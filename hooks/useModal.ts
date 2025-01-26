@@ -1,8 +1,10 @@
 "use client";
 
 import { useCallback, useState } from "react";
+import { useRouter } from "next/navigation";
 
 export const useModal = () => {
+  const router = useRouter();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [aboutModal, setAboutModal] = useState(false);
 
@@ -14,6 +16,7 @@ export const useModal = () => {
   const closeModal = useCallback((type: string) => {
     if (type === "result") setModalIsOpen(false);
     else setAboutModal(false);
+    router.push("/");
   }, []);
 
   return { modalIsOpen, aboutModal, openModal, closeModal };

@@ -7,8 +7,8 @@ const AboutPage = () => {
       <div className="flex flex-col gap-3">
         <h1 className="text-3xl font-bold">About Typecraft</h1>
         <p className="">
-          Typecraft is a minimalistic typing speed testing app built with React
-          and TailwindCSS that highly inspired by{" "}
+          Typecraft is a minimalistic typing speed testing app built with
+          Next.js and TailwindCSS that highly inspired by{" "}
           <a
             href="http://www.monkeytype.com"
             target="_blank"
@@ -52,27 +52,6 @@ const AboutPage = () => {
       </div>
 
       <div className="mt-auto flex flex-col gap-1">
-        <div className="flex items-center gap-3">
-          <BiLogoTelegram className="text-xl font-bold" />
-          <h2 className="text-xl font-bold">Contact:</h2>
-          <a
-            href="http://t.me/estif1727"
-            target="_blank"
-            className="hover:underline"
-            rel="noopener noreferrer"
-          >
-            Telegram
-          </a>
-          ,
-          <a
-            href="https://wa.link/e3397e"
-            target="_blank"
-            className="hover:underline"
-            rel="noopener noreferrer"
-          >
-            Whatsapp
-          </a>
-        </div>
         <div className="flex items-center gap-3">
           <BsGithub className="text-xl font-bold" />
           <h2 className="text-xl font-bold">Source code:</h2>

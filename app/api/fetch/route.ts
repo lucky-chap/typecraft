@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/utils/prisma";
 
-export async function POST(request: NextRequest, response: NextResponse) {
+export async function POST(request: Request) {
   //get request
   const { id } = await request.json();
 
@@ -13,17 +13,14 @@ export async function POST(request: NextRequest, response: NextResponse) {
   });
 
   if (!content) {
-    return NextResponse.json({
+    return Response.json({
       success: false,
       message: "Content not found",
     });
   }
 
-  return NextResponse.json(
-    {
-      success: true,
-      content: content.data,
-    },
-    { status: 200 }
-  );
+  return Response.json({
+    success: true,
+    content: content.data,
+  });
 }

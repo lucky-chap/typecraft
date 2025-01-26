@@ -95,7 +95,7 @@ export default function TypingPage() {
                 charTyped={charTyped}
               />
             </WordWrapper>
-            <Restart restart={restartTest} />
+            {/* <Restart restart={restartTest} /> */}
             <Footer />
             <ModalComponent
               type="result"
