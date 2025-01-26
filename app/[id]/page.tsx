@@ -1,5 +1,7 @@
 "use client";
 
+import { FiLoader } from "react-icons/fi";
+
 import { useDetectDevice } from "@/hooks/useDetectDevice";
 import { useSystem } from "@/hooks/useSystem";
 import { useThemeContext } from "@/hooks/useTheme";
@@ -27,6 +29,7 @@ export default function TypingPage() {
     aboutModal,
     history,
     time,
+    fetching,
     results,
     resetCountdown,
     setLocalStorageValue,
@@ -39,6 +42,19 @@ export default function TypingPage() {
   } = useSystem();
 
   const isMobile = useDetectDevice();
+
+  if (fetching) {
+    return (
+      <div className="grid min-h-screen place-content-center">
+        <div className="flex items-center">
+          <FiLoader size={30} className="animate-spin text-lg" />
+          <p className="ml-2 font-medium text-zinc-500">
+            Fetching your content
+          </p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div

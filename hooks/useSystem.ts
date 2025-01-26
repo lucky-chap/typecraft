@@ -31,7 +31,7 @@ export const useSystem = () => {
   const [wordContainerFocused, setWordContainerFocused] = useState(false);
   const [time, setTime] = useState(() => getLocalStorageValue("time") || 15000);
   const { countdown, resetCountdown, startCountdown } = useCountdown(time);
-  const { word, updateWord, totalWord } = useWord(30);
+  const { word, updateWord, totalWord, fetching, setFetching } = useWord(30);
   const {
     charTyped,
     typingState,
@@ -123,5 +123,7 @@ export const useSystem = () => {
     checkCharacter,
     closeModal,
     openModal,
+    fetching,
+    setFetching,
   };
 };
