@@ -78,18 +78,6 @@ const Header = ({ restart, openAboutModal }: HeaderProps) => {
         >
           Typecraft.
         </h1>
-        <Tooltip tooltipId="keyboard">
-          <div
-            className="ml-4"
-            onClick={() => {
-              restart();
-            }}
-            data-tooltip-id="keyboard"
-            data-tooltip-content="Restart"
-          >
-            <BsKeyboardFill className="text-2xl lg:text-3xl" />
-          </div>
-        </Tooltip>
       </div>
       <div className="flex gap-4">
         <ThemeDropdown />

@@ -29,7 +29,6 @@ const Footer = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          <BsCodeSlash className="text-xl font-bold" />
           <Tooltip tooltipId="source-code">
             <StyledLink
               theme={systemTheme}
@@ -40,7 +39,7 @@ const Footer = () => {
               data-tooltip-content="Give me a star 😊"
               data-tooltip-id="source-code"
             >
-              Agent
+              Use Agent
             </StyledLink>
           </Tooltip>
         </div>

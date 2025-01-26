@@ -12,6 +12,7 @@ import Header from "@/components/Header";
 import MobileNotSupported from "@/components/MobileNotSupported";
 import ModalComponent from "@/components/Modal";
 import ModalContent from "@/components/ModalContent";
+import NotFoundPage from "@/components/NotFound";
 import Restart from "@/components/Restart";
 import TimeCategory from "@/components/TimeCategory";
 import UserTyped from "@/components/UserTyped";
@@ -27,10 +28,12 @@ export default function TypingPage() {
     wordContainerFocused,
     modalIsOpen,
     aboutModal,
+    notFoundModal,
     history,
     time,
     fetching,
     results,
+    notFound,
     resetCountdown,
     setLocalStorageValue,
     setWordContainerFocused,
@@ -48,9 +51,6 @@ export default function TypingPage() {
       <div className="grid min-h-screen place-content-center">
         <div className="flex items-center">
           <FiLoader size={30} className="animate-spin text-lg" />
-          <p className="ml-2 font-medium text-zinc-500">
-            Fetching your content
-          </p>
         </div>
       </div>
     );
@@ -77,12 +77,7 @@ export default function TypingPage() {
               openAboutModal={openModal}
               closeAboutModal={closeModal}
             />
-            <TimeCategory
-              time={time}
-              setLocalStorage={setLocalStorageValue}
-              setTime={setTime}
-              restart={restartTest}
-            />
+
             <Countdown countdown={countdown} reset={resetCountdown} />
             <WordWrapper
               focused={wordContainerFocused}
@@ -116,6 +111,15 @@ export default function TypingPage() {
             >
               <AboutPage />
             </ModalComponent>
+            {notFound && (
+              <ModalComponent
+                type="notfound"
+                isOpen={true}
+                onRequestClose={closeModal}
+              >
+                <NotFoundPage />
+              </ModalComponent>
+            )}
           </>
         )}
       </main>

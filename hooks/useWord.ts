@@ -1,37 +1,46 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import prisma from "@/utils/prisma";
+import { usePathname } from "next/navigation";
 
 import { generateWord } from "../utils";
-
-const getWord = async (numberOfWords: number) => {
-  // fetch from /api/fetch
-  const res = await fetch("/api/fetch", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ id: "7ecfaaf7-9b27-45aa-90d2-1eddac2d0a57" }),
-  });
-
-  const data = await res.json();
-
-  const typingContent = data
-    ? data.content + " "
-    : generateWord(numberOfWords) + " ";
-
-  return typingContent;
-};
+import { useSystem } from "./useSystem";
 
 export const useWord = (numberOfWords: number) => {
+  const pahtname = usePathname();
+  const [notFound, setNotFound] = useState<boolean>(false);
+  const id = pahtname.split("/")[1] ?? "fake-id";
   const [fetching, setFetching] = useState<boolean>(true);
   const [word, setWord] = useState<string>("");
   const [totalWord, setTotalWord] = useState<string>("");
 
+  const getWord = async (numberOfWords: number, id: string) => {
+    // fetch from /api/fetch
+    const res = await fetch("/api/fetch", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: id }),
+    });
+
+    const data = await res.json();
+
+    const typingContent =
+      data.success == true
+        ? data.content + " "
+        : generateWord(numberOfWords) + " ";
+
+    if (data.success == false) {
+      setNotFound(true);
+    }
+
+    return typingContent;
+  };
+
   useEffect(() => {
     const fetchWord = async () => {
-      const fetchedWord = await getWord(numberOfWords);
+      const fetchedWord = await getWord(numberOfWords, id);
       setWord(fetchedWord);
       setTotalWord(fetchedWord);
       setFetching(false);
@@ -67,5 +76,7 @@ export const useWord = (numberOfWords: number) => {
     appendWord,
     fetching,
     setFetching,
+    notFound,
+    setNotFound,
   };
 };
