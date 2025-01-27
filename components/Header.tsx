@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { BsKeyboardFill, BsQuestionCircle } from "react-icons/bs";
 import styled from "styled-components";
 
@@ -6,7 +7,6 @@ import ThemeDropdown from "./ThemeDropdown";
 import Tooltip from "./Tooltip";
 
 type HeaderProps = {
-  restart: () => void;
   openAboutModal: (str: string) => void;
   closeAboutModal: (str: string) => void;
 };
@@ -17,7 +17,7 @@ const StyledSvg = styled.svg`
   color: ${({ theme }) => theme.text.title};
 `;
 
-const Header = ({ restart, openAboutModal }: HeaderProps) => {
+const Header = ({ openAboutModal }: HeaderProps) => {
   const { systemTheme } = useThemeContext();
 
   return (
@@ -73,11 +73,13 @@ const Header = ({ restart, openAboutModal }: HeaderProps) => {
             ></path>
           </g>
         </StyledSvg>
-        <h1
-          className={`font-mono text-2xl font-bold hover:underline lg:text-3xl`}
-        >
-          Typecraft.
-        </h1>
+        <Link href="/new">
+          <h1
+            className={`font-mono text-2xl font-bold hover:underline lg:text-3xl`}
+          >
+            Typecraft.
+          </h1>
+        </Link>
       </div>
       <div className="flex gap-4">
         <ThemeDropdown />

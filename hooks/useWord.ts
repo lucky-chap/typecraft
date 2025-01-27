@@ -7,12 +7,15 @@ import { generateWord } from "../utils";
 
 export const useWord = (numberOfWords: number) => {
   const router = useRouter();
-  const pahtname = usePathname();
+  const pathname = usePathname();
   const [notFound, setNotFound] = useState<boolean>(false);
-  const gameId = pahtname.split("/")[1] ?? "fake-id";
+  const index = pathname.split("/")[0] ?? "/";
+  const gameId = pathname.split("/")[1] ?? "fake-id";
   const [fetching, setFetching] = useState<boolean>(true);
   const [word, setWord] = useState<string>("");
   const [totalWord, setTotalWord] = useState<string>("");
+
+  console.log("pathname", pathname);
 
   const getWord = async (numberOfWords: number, id: string) => {
     // fetch from /api/fetch
@@ -33,7 +36,7 @@ export const useWord = (numberOfWords: number) => {
         ? data.content + " "
         : generateWord(numberOfWords) + " ";
 
-    if (data.success == false) {
+    if (data.success == false && pathname !== "/new") {
       router.push("/not-found");
     }
 
@@ -46,7 +49,10 @@ export const useWord = (numberOfWords: number) => {
       setWord(fetchedWord.text);
       setTotalWord(fetchedWord.text);
       setFetching(false);
-      // if (fetchedWord.success == false) {
+      // if (
+      //   fetchedWord.success == false &&
+      //   (index === "/" || index === "" || index === undefined)
+      // ) {
       //   router.push("/not-found");
       // }
     };

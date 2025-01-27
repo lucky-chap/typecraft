@@ -70,11 +70,7 @@ export default function TypingPage() {
           <MobileNotSupported />
         ) : (
           <>
-            <Header
-              restart={restartTest}
-              openAboutModal={openModal}
-              closeAboutModal={closeModal}
-            />
+            <Header openAboutModal={openModal} closeAboutModal={closeModal} />
 
             <Countdown countdown={countdown} reset={resetCountdown} />
             <WordWrapper
