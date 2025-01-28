@@ -220,6 +220,7 @@ export default function Home() {
                 {/* Submit */}
                 <div className="mb-4 w-full">
                   <button
+                    disabled
                     onClick={handleCreateNewGame}
                     className="block w-full rounded-lg bg-blue-500 p-2.5 text-sm text-white focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
                     style={{
@@ -229,6 +230,18 @@ export default function Home() {
                   >
                     Create game
                   </button>
+                  <p className="mx-auto max-w-sm">
+                    Creating new games from this site has been disabled
+                    (Agent.ai issues) . Please create one over{" "}
+                    <a
+                      className="font-bold underline"
+                      href="https://agent.ai/agent/typecraft"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      here
+                    </a>
+                  </p>
                 </div>
               </div>
             </div>
